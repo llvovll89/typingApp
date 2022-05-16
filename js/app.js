@@ -74,7 +74,7 @@ function initTyping() {
       wpmTag.innerText = wpm;
       cpmTag.innerText = charIndex - mistakes;
   }else {
-    swal('종료:)', "수고하셨습니다", 'warning');
+    swal('종료:)', "수고하셨습니다!!", 'warning');
     inpField.value = "";
     clearInterval(timer);
   }
