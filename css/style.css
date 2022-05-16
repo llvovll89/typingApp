@@ -1,7 +1,6 @@
-/* font 원하는 것 */
+/* import */
 @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
 @import url(../css/animation.css);
-@import url(../css/media.css);
 
 * {
     margin: 0;
@@ -160,35 +159,36 @@ ul, li, ol {
 
 @media (max-width: 564px) {
     .wrapper {
-        max-width: 420px;
+        max-width: 380px;
         padding: 15px;
     }
     .content-box {
         padding: 6px 12px 0;
     }
     .typing-text {
-        max-height: 230px;
+        max-height: 220px;
     }
     .typing-text p{
-        font-size: 102.5%;
+        font-size: 95.5%;
     }
     .content-box .content {
         margin-top: 10px;
+        justify-content: space-around;
         padding: 10px 0;
     }
     .result-details li {
         height: 18px;
     }
     .result-details li p {
-        font-size: 86.5%;
+        font-size: 62.5%;
     }
     .result-details li span {
-        font-size: 90%;
-        margin-left: 6px;
+        font-size: 88%;
+        margin-left: 5px;
     }
     .result-details li:not(:first-child) {
         border-left: 1px solid#ccc;
-        padding-left: 15px;
+        padding-left: 9px;
     }
     .content .result-details {
         width: calc(100% - 100px);
@@ -203,6 +203,7 @@ ul, li, ol {
 
     .btn {
         width: 60px;
+        font-size: 62.5%;
     }
 
     .content-box::before {
