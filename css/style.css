@@ -42,6 +42,7 @@ ul, li, ol {
     border-radius: 12px;
     text-align: center;
     transition: 1s all;
+    z-index: 1;
 }
 
 .hide-temp .title {
@@ -89,6 +90,39 @@ ul, li, ol {
     text-align: juscetify;
     letter-spacing: 1px;
     word-break: break-all;
+}
+
+.typing-text p span {
+    position: relative;
+}
+
+.typing-text p span.correct {
+    color: darkblue;
+    background: #ffc0cb;
+    outline: 1px solid #ffffff;
+    border-radius: 4px;
+}
+
+.typing-text p span.incorrect {
+    color: #cb3439;
+    background: #ffc0cb;
+    outline: 1px solid #ffffff;
+    border-radius: 4px;
+}
+
+.typing-text p span.active {
+    color: #17a2b8;
+}
+
+.typing-text p span.btn:active::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    width: 100%;
+    background: #17a2b8;
+
 }
 
 .content-box .content {
@@ -152,12 +186,17 @@ ul, li, ol {
     letter-spacing: 1px;
 }
 
+.btn:active {
+    transform: scale(.78);
+}
+
 .btn:hover {
     background: #ffffff;
     transition: .5s all;
 }
 
-@media (max-width: 564px) {
+/* mobile */
+@media (max-width: 768px) {
     .wrapper {
         max-width: 380px;
         padding: 15px;
