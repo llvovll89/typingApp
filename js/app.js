@@ -1,9 +1,22 @@
 const titleClick = document.querySelector(".title");
 const hidetemp = document.querySelector(".hide-temp");
 const typingText = document.querySelector(".typing-text p"),
-  inpField = document.querySelector(".wrapper .input-field");
+  inpField = document.querySelector(".wrapper .input-field"),
+  timeTag = document.querySelector(".time span b"),
+  mistakeTag = document.querySelector(".mistake span"),
+  wpmTag = document.querySelector('.wpm span'),
+  cpmTag = document.querySelector('.cpm span'),
+  tryAgainBtn = document.querySelector('.btn');
 
-let charIndex = 0;
+// 글자 수 나타내려고 함
+// const lettersNum = document.querySelector('.letters'),
+//     letterSpan = document.querySelector('.letters span');
+
+let timer,
+  maxTime = 60,
+  timeLeft = maxTime,
+  charIndex = mistakes = isTyping = 0;
+
 
 // start background
 titleClick.addEventListener("click", (e) => {
@@ -13,25 +26,81 @@ titleClick.addEventListener("click", (e) => {
 
 function randomParagraph() {
   let randIndex = Math.floor(Math.random() * paragraph.length);
+  typingText.innerHTML = "";
   paragraph[randIndex].split("").forEach((span) => {
     let spanTag = `<span>${span}</span>`;
     typingText.innerHTML += spanTag;
   });
+  typingText.querySelectorAll("span")[0].classList.add('active');
   document.addEventListener("keydown", () => inpField.focus());
   typingText.addEventListener("click", () => inpField.focus());
 }
 
+/* 글자 수
+if (paragraph.length === 0){
+letterSpan.innerText = paragraph.value;
+};
+*/
+
 function initTyping() {
   const characters = typingText.querySelectorAll("span");
   let typedChar = inpField.value.split("")[charIndex];
-  if (characters[charIndex].innerText === typedChar) {
-    characters[charIndex].classList.add("correct");
-  } else {
-    characters[charIndex].classList.add("incorrect");
+  if(charIndex < characters.length - 1 && timeLeft > 0) {
+    if (!isTyping) {
+        timer = setInterval(initTimer, 1000);
+        isTyping = true;
+      }
+      if (typedChar == null) {
+        charIndex--;
+        if (characters[charIndex].classList.contains("incorrect")) {
+          mistakes--;
+        }
+        characters[charIndex].classList.remove("correct", "incorrect");
+      } else {
+        if (characters[charIndex].innerText === typedChar) {
+          characters[charIndex].classList.add("correct");
+        } else {
+          mistakes++;
+          characters[charIndex].classList.add("incorrect");
+        }
+        charIndex++;
+      }
+      characters.forEach((span) => span.classList.remove("active"));
+      characters[charIndex].classList.add("active");
+    
+      let wpm = Mayh.round((((charIndex - mistakes) / 5) / (maxTime - timeLeft)) *60);
+      wpm = wpm < 0 || !wpm || wpm === Infinity ? 0 : wpm;
+      mistakeTag.innerText = mistakes;
+      wpmTag.innerText = wpm;
+      cpmTag.innerText = charIndex - mistakes;
+  }else {
+    swal('종료:)', "수고하셨습니다", 'warning');
+    inpField.value = "";
+    clearInterval(timer);
   }
-  charIndex++;
-  characters[charIndex].classList.add('active');
 }
+
+function initTimer() {
+  if (timeLeft > 0) {
+    timeLeft--;
+    timeTag.innerText = timeLeft;
+  } else {
+    clearInterval(timer);
+  }
+}
+
+function resetGame() {
+    randomParagraph();
+    inpField.value = "";
+    clearInterval(timer);
+    timeLeft = maxTime,
+    charIndex = mistakes = isTyping = 0;
+    timeTag.innerText = timeLeft;
+    mistakeTag.innerText = mistakes;
+    wpmTag.innerText = 0;
+    cpmTag.innerText = 0;
+};
 
 randomParagraph();
 inpField.addEventListener("input", initTyping);
+tryAgainBtn.addEventListener('click', resetGame);
