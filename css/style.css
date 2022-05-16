@@ -1,0 +1,219 @@
+/* font 원하는 것 */
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+@import url(../css/animation.css);
+@import url(../css/media.css);
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Gowun Dodum', sans-serif;
+    background: rgb(152, 208, 230);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+ul, li, ol {
+    list-style: none;
+}
+
+.typing-title {
+    position: absolute;
+    top: 18%;
+    left: 50%;
+    transform: translate(-50%, -18%);
+    font-size: 26px;
+    animation: titleMove 2s 2;
+    letter-spacing: 2px;
+}
+
+.hide-temp {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    left: 0;
+    top: 0;
+    border-radius: 12px;
+    text-align: center;
+    transition: 1s all;
+}
+
+.hide-temp .title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 152.2%;
+    color: #ffffff;
+    cursor: pointer;
+    transition: .5s all;
+}
+
+.title:hover {
+    font-size: 180%;
+    transition: .5s all;
+}
+
+.wrapper {
+    position: relative;
+    padding: 30px;
+    width: 770px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, .52);
+}
+
+.wrapper .content-box {
+    padding: 12px 19px 0;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+}
+
+.content-box .typing-text {
+    max-height: 255px;
+    overflow-y: auto;
+}
+
+.typing-text::-webkit-scrollbar {
+    width: 0;
+}
+
+.typing-text p {
+    font-size: 20px;
+    text-align: juscetify;
+    letter-spacing: 1px;
+    word-break: break-all;
+}
+
+.content-box .content {
+    margin-top: 16px;
+    padding: 13px 0;
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #ccc;
+    align-items: center;
+}
+
+.content .result-details {
+    display: flex;
+    width: calc(100% - 140px);
+    justify-content: space-between;
+    text-align: center;
+}
+
+.result-details li {
+    display: flex;
+    height: 22px;
+    align-items: center;
+}
+
+.result-details li:not(:first-child) {
+    border-left: 1px solid#ccc;
+    padding-left: 20px;
+}
+
+.result-details li p {
+    font-size: 19px;
+}
+
+.result-details li span {
+    display: block;
+    font-size: 20px;
+    margin-left: 8px;
+}
+
+.result-details li:not(:first-child) span {
+    font-weight: 500;
+}
+
+.result-details li b {
+    font-weight: 500;
+}
+
+
+/* button */
+.btn {
+    padding: 8px 0;
+    background: salmon;
+    border: none;
+    box-shadow: 0 0 2px rgba(0, 0, 0, .25);
+    cursor: pointer;
+    outline: none;
+    width: 100px;
+    max-width: 100px;
+    border-radius: 6px;
+    transition: .5s all;
+    letter-spacing: 1px;
+}
+
+.btn:hover {
+    background: #ffffff;
+    transition: .5s all;
+}
+
+@media (max-width: 564px) {
+    .wrapper {
+        max-width: 420px;
+        padding: 15px;
+    }
+    .content-box {
+        padding: 6px 12px 0;
+    }
+    .typing-text {
+        max-height: 230px;
+    }
+    .typing-text p{
+        font-size: 102.5%;
+    }
+    .content-box .content {
+        margin-top: 10px;
+        padding: 10px 0;
+    }
+    .result-details li {
+        height: 18px;
+    }
+    .result-details li p {
+        font-size: 86.5%;
+    }
+    .result-details li span {
+        font-size: 90%;
+        margin-left: 6px;
+    }
+    .result-details li:not(:first-child) {
+        border-left: 1px solid#ccc;
+        padding-left: 15px;
+    }
+    .content .result-details {
+        width: calc(100% - 100px);
+    }
+    .typing-title {
+        position: absolute;
+        top: 15%;
+        left: 50%;
+        transform: translate(-50%, -15%);
+        font-size: 26px;
+    }
+
+    .btn {
+        width: 60px;
+    }
+
+    .content-box::before {
+        position: absolute;
+        background: rgba(0, 0, 0, 0.62);
+        content: "";
+        top: -18px;
+        left: 29%;
+        transform: translateX(-29%);
+        width: 80px;
+        height: 15px;
+        border-top-right-radius: 20px;
+    }
+}
